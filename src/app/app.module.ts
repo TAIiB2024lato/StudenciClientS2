@@ -7,12 +7,18 @@ import { StudentsComponent } from './students/students.component';
 import { StudentRowComponent } from './student-row/student-row.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { FormularzComponent } from './formularz/formularz.component';
+import { GroupsComponent } from './groups/groups.component';
+import { TeachersComponent } from './teachers/teachers.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     StudentsComponent,
-    StudentRowComponent
+    StudentRowComponent,
+    FormularzComponent,
+    GroupsComponent,
+    TeachersComponent
   ],
   imports: [
     BrowserModule,

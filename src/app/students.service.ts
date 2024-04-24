@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { PaginationDTO } from './models/pagination.interface';
 import { Observable } from 'rxjs';
 import { StudentResponseDTo } from './models/student.interface';
+import { StudentRequestDTO } from './models/request.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -19,5 +20,9 @@ export class StudentsService {
       page: pagintaion.page ?? 0,
       count: pagintaion.count ?? 10
     } });
+  }
+
+  public post(body: StudentRequestDTO): Observable<void> {
+    return this.httpClient.post<void>('https://localhost:7254/api/Students', body);
   }
 }

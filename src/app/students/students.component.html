@@ -9,21 +9,44 @@
 </form>
 <br />
 
-<div *ngFor="let s of data">
-    {{s | json}}
-</div>
+<button (click)="onDataStyleChange()">
+    {{isTableView ? 'JSON' : 'Tabelka'}}
+</button>
 
-<table border="1">
+<br />
+
+<ng-container *ngIf="!isTableView">
+    <div *ngFor="let s of data" (click)="choosedStudent = s" class="selectable">
+        {{s | json}}
+    </div>
+</ng-container>
+
+<table *ngIf="isTableView" border="1">
     <thead>
         <tr>
             <th>Imię</th>
             <th>Nazwisko</th>
             <th>Grupa</th>
             <th>Nr albumu</th>
+            <th>Wybierz</th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let s of data" [app-student-row]="s">
+        <tr 
+            *ngFor="let s of data" 
+            [app-student-row]="s"
+            (choosed)="onChoosedRow($event)">
         </tr>
     </tbody>
 </table>
+
+<br/>
+
+<div *ngIf="choosedStudent">
+    Wybrany student to: {{choosedStudent.name}}
+    <app-formularz 
+        (cancel)="choosedStudent = undefined"
+        (submit)="onSubmit()">
+
+    </app-formularz>
+</div>
